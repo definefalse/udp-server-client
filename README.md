@@ -2,6 +2,7 @@
 ### Dependencies
 * boost 1.84
 * cmake ≥ 3.10
+* c++20 supporting compiler
 
 ```bash
 cmake -S . -B build
