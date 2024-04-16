@@ -82,7 +82,7 @@ void UdpServer::receive_session()
     /// сессия для сохранения буффера и эндпоинта
     auto session = std::make_shared<UdpSession>(this);
 
-    if (m_socket.is_open()) {
+    if (!m_is_stop && m_socket.is_open()) {
         m_socket.async_receive_from(
             boost::asio::buffer(session->m_recv_buffer),
             session->m_remote_endpoint,
@@ -139,6 +139,7 @@ void UdpServer::handle_sent(const shared_session& session, const boost::system::
 void UdpServer::stop()
 {
     std::cout << "Stoping server...\n";
+    m_is_stop = true;
     if (m_socket.is_open()) {
         while (m_pending_send_count != 0) {
         }

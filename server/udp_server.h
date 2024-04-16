@@ -62,7 +62,7 @@ private:
     boost::asio::io_context::strand m_strand;
 
     std::unordered_map<std::string, std::string> m_server_resource_info;
-
+    std::atomic_bool m_is_stop{false};
     std::atomic<int> m_pending_send_count{0};
     friend struct udp_session;
 };
